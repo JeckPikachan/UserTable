@@ -1,0 +1,12 @@
+<div>
+  <form [formGroup]="signInForm" (submit)="onSubmit($event)">
+    <div *ngIf="errorMsg">{{errorMsg}}</div>
+    <div>
+      <label>Login: <input type="text" formControlName="login" /> </label>
+    </div>
+    <div>
+      <label>Password: <input type="password" formControlName="password" /> </label>
+    </div>
+    <button type="submit">Sign In</button>
+  </form>
+</div>

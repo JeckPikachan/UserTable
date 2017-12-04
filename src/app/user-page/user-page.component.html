@@ -1,0 +1,33 @@
+<div>
+  <button (click)="signOut()">Sign Out</button>
+  <table *ngIf="user">
+    <tr>
+      <td>Name: </td>
+      <td>{{user.name}}</td>
+    </tr>
+    <tr>
+      <td>Date of Birth: </td>
+      <td>{{user.dateOfBirth}}</td>
+    </tr>
+    <tr>
+      <td>Login: </td>
+      <td>{{user.login}}</td>
+    </tr>
+    <tr>
+      <td>Password: </td>
+      <td>{{user.password}}</td>
+    </tr>
+    <tr>
+      <td>Address: </td>
+      <td>{{user.address.country}}, {{user.address.city}}</td>
+    </tr>
+    <tr>
+      <td>Contacts: </td>
+      <td>
+        <p *ngFor="let contact of user.contacts">
+          {{contact.name}}: {{contact.value}}
+        </p>
+      </td>
+    </tr>
+  </table>
+</div>

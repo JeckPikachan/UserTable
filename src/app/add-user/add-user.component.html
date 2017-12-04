@@ -1,0 +1,96 @@
+<div class="main">
+  <form novalidate [formGroup]="addUserForm" (submit)="submitForm($event);">
+    <div>
+      <label>User Name</label>
+      <input type="text" formControlName="userName">
+    </div>
+    <validator-message [field]="addUserForm.get('userName')"></validator-message>
+
+    <div>
+      <label>Login</label>
+      <input type="text" formControlName="login">
+    </div>
+    <validator-message [field]="addUserForm.get('login')"></validator-message>
+
+    <div>
+      <label>Date of Birth</label>
+      <input type="text" formControlName="dateOfBirth">
+    </div>
+    <validator-message [field]="addUserForm.get('dateOfBirth')"></validator-message>
+
+    <fieldset formGroupName="address">
+      <legend>Address</legend>
+      <div>
+        <div>
+          <div>
+            <label>Country</label>
+            <input type="text" class="form-control" formControlName="country">
+          </div>
+          <validator-message [field]="addUserForm.get('address').get('country')"></validator-message>
+        </div>
+        <div>
+          <div>
+            <label>City</label>
+            <input type="text" formControlName="city">
+          </div>
+          <validator-message [field]="addUserForm.get('address').get('city')"></validator-message>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset formArrayName="contacts">
+      <legend>Contacts</legend>
+      <div *ngFor="let contact of contacts.controls; let i = index">
+        <div>
+          <div>
+            <select [formControl]="contact.controls['type']">
+              <option *ngFor="let type of contactTypes" value="{{type.type}}">{{type.name}}</option>
+            </select>
+          </div>
+          <div>
+            <input type="text" [formControl]="contact.controls['value']">
+            <br>
+            <validator-message [field]="contact.controls['value']"></validator-message>
+          </div>
+          <div>
+            <button type="button" (click)="removeContact(i);">X</button>
+          </div>
+        </div>
+      </div>
+      <validator-message [field]="addUserForm.get('contacts')"></validator-message>
+
+      <div>
+        <button type="button" (click)="addContact();">Add new</button>
+      </div>
+    </fieldset>
+
+    <fieldset formGroupName="passwords">
+      <legend>Password</legend>
+      <div>
+        <div>
+          <div>
+            <label>Type password</label>
+            <input type="password" formControlName="pwd">
+          </div>
+          <validator-message [field]="addUserForm.get('passwords').get('pwd')"></validator-message>
+        </div>
+        <div>
+          <div>
+            <label>Confirm password</label>
+            <input type="password" formControlName="confirm">
+          </div>
+          <validator-message [field]="addUserForm.get('passwords').get('confirm')"></validator-message>
+        </div>
+        <div class="col-md-12">
+          <br>
+          <validator-message [field]="addUserForm.get('passwords')"></validator-message>
+        </div>
+      </div>
+    </fieldset>
+
+    <div>
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+
+</div>
