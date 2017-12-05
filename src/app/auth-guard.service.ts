@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot} from '@angular/router';
 import {AuthService} from './auth.service';
 import {Observable} from 'rxjs/Observable';
-import {CONSTS} from './CONSTS';
 
 @Injectable()
 export class AuthGuardService implements CanActivateChild {
@@ -11,12 +10,12 @@ export class AuthGuardService implements CanActivateChild {
 
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
     let url: string = state.url;
+    let data = route.data;
+    let pageRole = data[0];
     return this.authService.isUserSignedIn().map(res => {
       if (res) {
         const role = this.authService.getSignedUserRole();
-        if (role === CONSTS.ROLE_ADMIN && url.split('/')[1] === CONSTS.ADMIN_REDIRECT_PAGE)
-          return true;
-        if (role === CONSTS.ROLE_USER && url.split('/')[1] === CONSTS.USER_REDIRECT_PAGE)
+        if (role === pageRole)
           return true;
         this.router.navigate([ this.authService.getRedirectUrl() ]);
       }

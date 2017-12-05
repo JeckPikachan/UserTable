@@ -6,16 +6,18 @@ import {
 } from '@angular/forms';
 import {ContactType, User} from '../user';
 import {CustomValidatorsService} from '../custom-validators.service';
+import {IShoudSave} from "../../IShoudSave";
 
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
   styleUrls: ['./add-user.component.css']
 })
-export class AddUserComponent implements OnInit {
+export class AddUserComponent implements OnInit, IShoudSave {
 
   public addUserForm: FormGroup = null;
   public userData: any = null;
+  public Form: FormGroup;
 
   public contactTypes: ContactType[] = [
     {type: 'phone', name: 'Phone', validators: [this.validators.phoneValidator(), Validators.required]},
@@ -49,6 +51,8 @@ export class AddUserComponent implements OnInit {
         confirm: ['', pwdValidators]
       }, {validator: this.validators.passwordsAreEqual()})
     });
+
+    this.Form = this.addUserForm;
   }
 
   public get contacts(): FormArray {

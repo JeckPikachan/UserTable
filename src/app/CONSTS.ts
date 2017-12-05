@@ -4,4 +4,6 @@ export class CONSTS {
 
   static ADMIN_REDIRECT_PAGE = 'users';
   static  USER_REDIRECT_PAGE = 'main';
+
+  static ERROR_PAGE_LINK = '404';
 }

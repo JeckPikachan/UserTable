@@ -3,6 +3,8 @@ import {Observable} from 'rxjs/Observable';
 import {of} from 'rxjs/observable/of';
 import {USERS} from './current-users';
 import {IUser, User} from './user';
+import {CONSTS} from "./CONSTS";
+import {NoMemoryError} from "./no-memory-error-handler";
 
 @Injectable()
 export class UserService {
@@ -18,6 +20,12 @@ export class UserService {
   }
 
   addUser(user: User): void {
-    USERS.push(user);
+    this.getUsers().subscribe( users => {
+      if (users.filter(user => user.getRole() === CONSTS.ROLE_USER).length > 1) {
+        throw new NoMemoryError("Can't add user. No memory on cloud.");
+      }
+
+      USERS.push(user);
+    });
   }
 }
