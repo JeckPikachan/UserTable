@@ -6,14 +6,15 @@ import {
 } from '@angular/forms';
 import {ContactType, User} from '../user';
 import {CustomValidatorsService} from '../custom-validators.service';
-import {IShoudSave} from "../../IShoudSave";
+import {IShouldSave} from "../../IShoudSave";
+import {Utils} from "../utils";
 
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
   styleUrls: ['./add-user.component.css']
 })
-export class AddUserComponent implements OnInit, IShoudSave {
+export class AddUserComponent implements OnInit, IShouldSave {
 
   public addUserForm: FormGroup = null;
   public userData: any = null;
@@ -75,7 +76,6 @@ export class AddUserComponent implements OnInit, IShoudSave {
     const currentContactGroup = contactControls[contactControls.length - 1];
 
     currentContactGroup.get('type').valueChanges.subscribe((type: string) => {
-      console.log(type);
       const valueCtrl: FormControl = currentContactGroup.get('value');
       valueCtrl.setValidators(this.getContactValidatorsByType(type));
       valueCtrl.updateValueAndValidity();
@@ -105,6 +105,24 @@ export class AddUserComponent implements OnInit, IShoudSave {
         this.markControlsAsTouched(form.controls[control]);
       }
     }
+  }
+
+
+
+  maxLength(input: FormControl) : number {
+
+    return input.value[0] == '+' ? 13 : 12;
+  }
+
+  needToRestrict(control: FormControl): boolean {
+    return (control.value == 'phone');
+  }
+
+  Restrict(input: FormControl, control: FormControl) {
+    let amount = () => this.maxLength(input);
+    let addCheck = () => this.needToRestrict(control);
+
+    return Utils.maxLength(amount, addCheck);
   }
 
   // submit form method

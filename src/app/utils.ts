@@ -1,6 +1,6 @@
+import {FormControl} from "@angular/forms";
 export class Utils {
   static clone(obj): any {
-    debugger;
     if (null == obj || "object" != typeof obj) return obj;
     let copy = obj.constructor();
     for (let attr in obj) {
@@ -17,4 +17,12 @@ export class Utils {
     }
     return copy;
   }
+
+  static maxLength(amount: Function | number, addCheck: Function = () => true) : number {
+    if (addCheck())
+      return typeof amount == 'function' ? amount() : amount;
+
+    return 0;
+  }
 }
+

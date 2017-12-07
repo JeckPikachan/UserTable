@@ -7,6 +7,7 @@ import {CustomSelectComponent} from '../custom-select';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SaveService} from "../../save.service";
 import {NoMemoryErrorHandler} from "../../no-memory-error-handler";
+import {SymbolRestrictionDirective} from "../../symbol-restriction.directive";
 
 const routes: Routes = [
   { path: '', component: AddUserComponent, canDeactivate: [SaveService] }
@@ -22,6 +23,7 @@ const routes: Routes = [
   declarations: [
     AddUserComponent,
     CustomSelectComponent,
+    SymbolRestrictionDirective,
     ValidatorMessageComponent
   ],
   exports: [

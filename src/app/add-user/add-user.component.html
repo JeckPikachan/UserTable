@@ -48,7 +48,7 @@
             </select>
           </div>
           <div>
-            <input type="text" [formControl]="contact.controls['value']">
+            <input type="text" [formControl]="contact.controls['value']" [SymbolRestriction]="this.Restrict(contact.controls['value'], contact.controls['type'])">
             <br>
             <validator-message [field]="contact.controls['value']"></validator-message>
           </div>
