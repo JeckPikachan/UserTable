@@ -118,7 +118,7 @@ export class AddUserComponent implements OnInit, IShouldSave {
     return (control.value == 'phone');
   }
 
-  Restrict(input: FormControl, control: FormControl) {
+  restrict(input: FormControl, control: FormControl) {
     let amount = () => this.maxLength(input);
     let addCheck = () => this.needToRestrict(control);
 

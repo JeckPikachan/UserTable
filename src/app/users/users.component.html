@@ -18,4 +18,21 @@
       <td><button (click)="viewCurrentUser(user)">VIEW</button></td>
     </tr>
   </table>
+  <div *ngIf="pdf">
+    <button (click)="toFirstPage()"><<</button>
+    <button (click)="prevPage()"><</button>
+    <span>{{this.page}} / {{pdf.numPages}}</span>
+    <button (click)="nextPage()">></button>
+    <button (click)="toLastPage()">>></button>
+  </div>
+  <pdf-viewer *ngIf="pdfData && isDataValid"
+              [src]="pdfData"
+              [render-text]="true"
+              [page]="page"
+              [zoom]="0.75"
+              [show-all]="false"
+              (after-load-complete)="afterLoadComplete($event)"
+              (error)="onError($event)"
+              style="display: block;"
+  ></pdf-viewer>
 </div>

@@ -24,7 +24,7 @@
         <div>
           <div>
             <label>Country</label>
-            <input type="text" class="form-control" formControlName="country">
+            <input type="text" class="form-control" formControlName="country" UpperCase>
           </div>
           <validator-message [field]="addUserForm.get('address').get('country')"></validator-message>
         </div>
@@ -48,7 +48,7 @@
             </select>
           </div>
           <div>
-            <input type="text" [formControl]="contact.controls['value']" [SymbolRestriction]="this.Restrict(contact.controls['value'], contact.controls['type'])">
+            <input type="text" [formControl]="contact.controls['value']" [SymbolRestriction]="restrict(contact.controls['value'], contact.controls['type'])">
             <br>
             <validator-message [field]="contact.controls['value']"></validator-message>
           </div>
