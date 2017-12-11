@@ -18,6 +18,11 @@
       <td><button (click)="viewCurrentUser(user)">VIEW</button></td>
     </tr>
   </table>
+
+  <templating [headerTemplate]="header" [bodyTemplate]="body" [data]="countries">
+
+  </templating>
+
   <div *ngIf="pdf">
     <button (click)="toFirstPage()"><<</button>
     <button (click)="prevPage()"><</button>
@@ -35,4 +40,19 @@
               (error)="onError($event)"
               style="display: block;"
   ></pdf-viewer>
+
+  <ng-template #header>
+    <p>
+      Header Works!
+    </p>
+  </ng-template>
+
+  <ng-template #body let-country let-count="count">
+    <p>
+      Body Works!
+    </p>
+    <div>
+      {{country.name}}: {{country.desc}} (Total: {{count}})
+    </div>
+  </ng-template>
 </div>

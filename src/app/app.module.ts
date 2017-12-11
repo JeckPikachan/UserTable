@@ -8,8 +8,6 @@ import {CustomValidatorsService} from './custom-validators.service';
 import {HttpClient, HttpClientModule, HttpHandler} from '@angular/common/http';
 import { Page404Component } from './page-404/page-404.component';
 import {ErrorService} from "./error.service";
-import { SymbolRestrictionDirective } from './symbol-restriction.directive';
-import { UpperCaseDirective } from './upper-case.directive';
 
 
 

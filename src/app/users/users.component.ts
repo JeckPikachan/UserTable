@@ -6,6 +6,7 @@ import {Admin} from '../admin';
 import {AuthService} from '../auth.service';
 import {CONSTS} from '../CONSTS';
 import {HttpClient} from "@angular/common/http";
+import {Country} from "../country";
 
 @Component({
   selector: 'app-users',
@@ -20,6 +21,12 @@ export class UsersComponent implements OnInit {
   private pdfData;
   private isDataValid = true;
   private page = 1;
+
+  private countries: Country[] = [
+    new Country('Belarus', 'A country of lakes'),
+    new Country('Mexico', 'A place of sombrero and tequila'),
+    new Country('China', 'A great Asian country')
+  ];
 
   private selectedUser: User;
 

@@ -1,0 +1,30 @@
+<ng-template #defaultTab>
+
+  <div>
+    ...
+  </div>
+
+</ng-template>
+
+<p>
+  Some more content
+</p>
+
+<ng-container
+  *ngTemplateOutlet="headerTemplate ? headerTemplate: defaultTab">
+
+</ng-container>
+
+<p>
+  Some more content
+</p>
+
+<ng-container *ngFor="let item of data">
+  <ng-container
+    *ngTemplateOutlet="bodyTemplate ? bodyTemplate: defaultTab;context:{$implicit: item, count: this.data.length}">
+</ng-container>
+
+</ng-container>
+<p>
+  Some more content
+</p>
