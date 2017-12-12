@@ -82,6 +82,10 @@ export class UsersComponent implements OnInit {
     this.router.navigate(['/users/detail', user.login]);
   }
 
+  createDocument(): void {
+    this.router.navigate(['/users/creator']);
+  }
+
   addUser(): void {
     this.router.navigate(['users/addUser']);
   }

@@ -1,0 +1,42 @@
+<div class="menu" [ngClass]="{'menu-opened': isOpen}">
+  <div class="menu-open" (click)="openMenu()">☰</div>
+  <div class="menu__content">
+    <ul class="menu__list">
+      <li (click)="addBlock(blockSizes['30/70'])">30 / 70</li>
+      <li (click)="addBlock(blockSizes['40/60'])">40 / 60</li>
+      <li (click)="addBlock(blockSizes['50/50'])">50 / 50</li>
+      <li (click)="addBlock(blockSizes['60/40'])">60 / 40</li>
+      <li (click)="addBlock(blockSizes['70/30'])">70 / 30</li>
+      <li (click)="addBlock(blockSizes['100'])">FULL SIZE</li>
+    </ul>
+    <div class="menu-close" (click)="closeMenu()">&times;</div>
+  </div>
+</div>
+
+<main>
+
+  <header class="header">
+    <h2 class="header__title">Create Document</h2>
+    <button (click)="goBack()" class="button--back align-right">BACK</button>
+
+  </header>
+
+
+  <div class="working-space" dnd-sortable-container [sortableData]="views">
+    <div #workingSpace *ngFor="let view of views; let i = index" dnd-sortable [sortableIndex]="i">
+      <ng-container *ngTemplateOutlet="blocks;context:{$implicit: view.blockSize, index: i}"></ng-container>
+    </div>
+  </div>
+
+  <ng-template #blocks let-blockSizes let-index="index">
+    <div class="blocks">
+      <div class="blocks__wrapper" [style.width]="blockSizes + '%'">
+        <div class="blocks__block"></div>
+      </div>
+      <div *ngIf="blockSizes < 100" class="blocks__wrapper" [style.width]="100 - blockSizes + '%'">
+        <div class="blocks__block"></div>
+      </div>
+      <div class="blocks__delete" (click)="removeBlock(index)">&times;</div>
+    </div>
+  </ng-template>
+</main>

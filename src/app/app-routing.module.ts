@@ -18,7 +18,8 @@ export const routes: Routes = [
   { path: 'users', canActivateChild: [AuthGuardService], data: [CONSTS.ROLE_ADMIN], children: [
       { path: '', loadChildren: 'app/users/users/users.module#UsersModule' },
       { path: 'addUser', loadChildren: 'app/add-user/add-user/add-user.module#AddUserModule' },
-      { path: 'detail/:login', loadChildren: 'app/user-detail/user-detail/user-detail.module#UserDetailModule'}
+      { path: 'detail/:login', loadChildren: 'app/user-detail/user-detail/user-detail.module#UserDetailModule'},
+      { path: 'creator', loadChildren: 'app/document-creator/document-creator/document-creator.module#DocumentCreatorModule'}
       ]
   }
 ];
